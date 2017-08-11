@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <link href="css/styles.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="options-box">
+      <h1>Explore Fox Park Neighborhood</h1>
+      <input type="text" id="searchbox" placeholder="What are you looking for?">
+      <input type="button" id="searchbtn" value="Search">
+      <hr>
+      <ul id = "places" data-bind = "foreach: places">
+        <li>
+          <div>
+            <span data-bind="text: name()" class = "listname"></span><br>
+            <span data-bind="text: address()" class = "listaddr"></span><br>
+            <span data-bind="text: latlong.lat"></span>
+            <hr>
+          </div>
+        </li>
+      </ul>
+      <!-- <input type="button" id="test" value="test"> -->
+    </div>
+    <div id="map"></div>
+    <script src = "js/knockout-3.4.2.js"></script>
+    <script src = "js/map.js"></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCp8ZikW_ra9tlHIM92cOJEb0xWjHUs4Fk&v=3&callback=initMap">
+    </script>
+    <script src = "js/app.js"></script>
+
+  </body>
+</html>
