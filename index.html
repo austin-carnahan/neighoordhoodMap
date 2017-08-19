@@ -6,15 +6,15 @@
   <body>
     <div class="options-box">
       <h1>Explore Fox Park Neighborhood</h1>
-      <input type="text" id="searchbox" placeholder="What are you looking for?">
-      <input type="button" id="searchbtn" value="Search">
+      <input type="text" id="searchbox" placeholder="What are you looking for?"
+        data-bind = "value: filterText, valueUpdate: 'keyup'">
       <hr>
-      <ul id = "places" data-bind = "foreach: places">
-        <li>
+      <ul id = "places" data-bind = "foreach: placeList">
+        <li data-bind = "click: $parent.showInfo">
           <div>
-            <span data-bind="text: name()" class = "listname"></span><br>
-            <span data-bind="text: address()" class = "listaddr"></span><br>
-            <span data-bind="text: latlong.lat"></span>
+            <span data-bind="text: name" class = "listname"></span><br>
+            <span data-bind="text: address" class = "listaddr"></span><br>
+            <span data-bind ="text: info"></span>
             <hr>
           </div>
         </li>
