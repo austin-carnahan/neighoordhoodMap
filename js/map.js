@@ -41,7 +41,7 @@ function createMarker(id){
   });
 
   markers.push(marker);
-  markers.sort(function(a, b){return a-b});
+  //markers.sort(function(a, b){return a-b});
 
   //add an infoWindow to the marker
   infoWindow = new google.maps.InfoWindow();
@@ -63,7 +63,7 @@ function createMarker(id){
 function fillWindow(marker, window) {
   if (window.marker != marker) {
     window.marker = marker;
-    window.setContent('<div>' + marker.title + '</div><div id="test"><div><br><div id="pano" style="height:200px; width:200px;"></div>');
+    window.setContent('<div>' + marker.title + '</div><br><div id="pano" style="height:200px; width:200px;"></div>');
     window.open(map, marker);
 
   }
@@ -80,7 +80,7 @@ function toggleBounce(marker){
 
 function showPano(position){
 
-  document.getElementById("test").innerHTML = "test success";
+  //document.getElementById("test").innerHTML = "test success";
 
   var panorama = new google.maps.StreetViewPanorama(
       document.getElementById('pano'), {
