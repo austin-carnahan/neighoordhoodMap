@@ -41,7 +41,6 @@ function createMarker(id){
   });
 
   markers.push(marker);
-  //markers.sort(function(a, b){return a-b});
 
   //add an infoWindow to the marker
   infoWindow = new google.maps.InfoWindow();

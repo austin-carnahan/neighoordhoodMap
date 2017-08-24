@@ -18,8 +18,7 @@ new place("Keypers Piano Bar", "2280 Jefferson Avenue, St. Louis, MO"),
 new place("Fritanga","2208 Jefferson Avenue, St. Louis, MO"),
 new place("Southside Early Childhood Center", "2101 S Jefferson Ave, St. Louis, MO"),
 new place("7-Eleven", "2607 Gravois Ave, St. Louis, MO"),
-new place("Dutch Town Auto Brokerage","2737 Gravois Ave, St. Louis, MO"),
-new place("Concrete Ocean Art Gallery", "2257 S Jefferson Ave, St. Louis, MO")
+new place("Dutch Town Auto Brokerage","2737 Gravois Ave, St. Louis, MO")
 ];
 
 //**************************Geocode Places ************************************
@@ -97,6 +96,10 @@ showInfo: function(place){
   place.info("You Clicked!");
   //open marker info window for selected place
   fillWindow(markers[place.id], infoWindow);
+  //bounce it out
+  toggleBounce(markers[place.id]);
+  //show streetview
+  showPano(markers[place.id].position);
 }
 
 };
