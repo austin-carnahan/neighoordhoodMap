@@ -9,11 +9,6 @@ function initMap() {
     zoom: 16
   });
 
-  infoWindow = new google.maps.InfoWindow();
-
-  // document.getElementById('test').addEventListener('click', function() {
-  //           geocodeAddress("2199 California Ave, St. Louis, MO");
-  //         });
 
 
 }
@@ -39,6 +34,10 @@ function geocodeAddress(address, i){
   });
 }
 
+// var defaultMarker = makeMarkerIcon('0091ff');
+//
+// var hilightMarker = makeMarkerIcon('FFFF24');
+
 function createMarker(id){
   //create a marker and push to markers array
   var marker = new google.maps.Marker({
@@ -53,19 +52,48 @@ function createMarker(id){
   markers.sort(function(a, b){return a-b});
 
   //add an infoWindow to the marker
+  infoWindow = new google.maps.InfoWindow();
   marker.addListener('click', function(){
+    //fill infowindow
     fillWindow(this, infoWindow);
+    //show panorama
+    showPano(this.position);
+    //toggle bounce if selected
+    toggleBounce(this);
     //alert list view of selection
     var selectedPlace = viewModel.placeList()[marker.id];
     viewModel.showInfo(selectedPlace);
   });
+
 }
+
 
 function fillWindow(marker, window) {
   if (window.marker != marker) {
     window.marker = marker;
-    window.setContent('<div>' + marker.title + '</div>');
+    window.setContent('<div>' + marker.title + '</div><br><div id="pano"></div>');
     window.open(map, marker);
 
   }
+}
+
+function toggleBounce(marker){
+  if(marker.getAnimation() !== null){
+    marker.setAnimation(null);
+  }else{
+    marker.setAnimation(google.maps.Animation.BOUNCE);
+    setTimeout(function(){ marker.setAnimation(null); }, 750);
+  }
+}
+
+function showPano(position){
+  var panorama = new google.maps.StreetViewPanorama(
+      document.getElementById('pano'), {
+        position: position,
+        pov: {
+          heading: 34,
+          pitch: 10
+        }
+      });
+  map.setStreetView(panorama);
 }
