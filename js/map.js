@@ -8,9 +8,6 @@ function initMap() {
     center: {lat: 38.607523, lng: -90.225898},
     zoom: 16
   });
-
-
-
 }
 
 function geocodeAddress(address, i){
@@ -30,13 +27,8 @@ function geocodeAddress(address, i){
     } else {
       alert('Geocode was not successful: ' + status);
     }
-    console.log(address + ": " + resultlat + ", " + resultlng);
   });
 }
-
-// var defaultMarker = makeMarkerIcon('0091ff');
-//
-// var hilightMarker = makeMarkerIcon('FFFF24');
 
 function createMarker(id){
   //create a marker and push to markers array
@@ -71,7 +63,7 @@ function createMarker(id){
 function fillWindow(marker, window) {
   if (window.marker != marker) {
     window.marker = marker;
-    window.setContent('<div>' + marker.title + '</div><br><div id="pano"></div>');
+    window.setContent('<div>' + marker.title + '</div><div id="test"><div><br><div id="pano" style="height:200px; width:200px;"></div>');
     window.open(map, marker);
 
   }
@@ -87,6 +79,9 @@ function toggleBounce(marker){
 }
 
 function showPano(position){
+
+  document.getElementById("test").innerHTML = "test success";
+
   var panorama = new google.maps.StreetViewPanorama(
       document.getElementById('pano'), {
         position: position,
