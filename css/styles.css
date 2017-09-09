@@ -1,50 +1,139 @@
-html,
-body {
+
+html, body {
   font-family: Arial, sans-serif;
   height: 100%;
-  margin: 0;
-  padding: 0;
+  width: 100%;
+  overflow: hidden;
 }
 
-h1{
-  text-align: center;
+#wrapper{
+  height: 100%;
+  width: 100%;
+  padding-left: 0;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 
-input{
-  padding: 5px 5px 5px 5px;
+#wrapper.toggled {
+  padding-left: 350px;
+}
+
+#sidebar-wrapper{
+  z-index: 1000;
+  position: fixed;
+  left: 250px;
+  width: 0;
+  height: 100%;
+  margin-left: -250px;
+  overflow-y: auto;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  width: 350px;
+}
+
+#page-content-wrapper{
+  height: 100%;
+  width: 100%;
+  position:absolute;
+}
+
+#wrapper.toggled #page-content-wrapper {
+  position: absolute;
+  margin-right: -250px;
+  width: 80%;
+  height: 100%;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+header{
+  border: 1px solid #999;
+  border-radius: 3px;
+
+}
+
+h1 {
+  font-size: 30px;
+  padding-left: 0;
+}
+
+#map-canvas {
+  height: 100%;
+  width: 100%;
+}
+
+.container-map {
+  height: 100%;
+  width: 100%;
+}
+
+/*#wrapper.toggled .container-map{
+  width: 80%;
+}*/
+
+.menu{
+ margin-top: 10px;
+}
+
+.menuBar{
+  width: 35px;
+  height: 5px;
+  background-color: black;
+  margin: 5px 0;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.menu:hover .menuBar{
+  width: 40px;
+  height: 7px;
+  transition: 0.2s;
 }
 
 #searchbox{
-  margin-left: 25px;
+  margin-left: 30px;
+  width: 80%;
+  margin-top: 10px;
+  padding-bottom: 5px;
 }
 
-#searchbtn{
-  width: 100px;
-  text-align: center;
-}
-
-#map {
-  bottom:0px;
-  height: 100%;
-  left: 362px;
-  position: absolute;
-  right: 0px;
-}
-
-.options-box {
-  background: #fff;
-  border: 1px solid #999;
-  border-radius: 3px;
-  height: 95%;
-  line-height: 35px;
-  padding: 10px 10px 30px 10px;
-  text-align: left;
-  width: 340px;
-}
 
 #places {
-  height: 70%;
+  height: 90%;
   overflow: auto;
+  padding-left: 0px;
+
+}
+
+.place{
+  padding-left: 20px;
+}
+
+.place:hover {
+  background-color: #e5fff9;
+}
+
+.place-photo {
+  padding-bottom: 5px;
+  margin: 0 auto;
+}
+
+.source-credit{
+  font-size: 60%;
+  padding-top: 5px;
+  padding-bottom: 0px;
+  margin: 0 auto;
 }
 
 .listname{
@@ -54,5 +143,10 @@ input{
 
 .listaddr{
   font-weight: lighter;
-  font-size: 75%;
+  font-size: 10px;
 }
+
+@media screen and (max-width: 500px) {
+  h1 {
+    font-size: 18px;
+  }

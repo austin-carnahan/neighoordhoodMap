@@ -1,11 +1,7 @@
 //TODO
-//1. get FS photos
-//2. get FS hours
-// cache data so we don't api every time click
 //3.fix async marker/list problem
-//4.fix streetview position and get rid of yellow guuy
-//5.error handling
 //6 README
+//7 responsive
 //**************************** Data Model ************************************
 var place = function(name, address, venueId){
   this.name = name;
@@ -14,7 +10,7 @@ var place = function(name, address, venueId){
   this.id = 0;
   this.venue = venueId;
   this.photoURL = ko.observable("");
-  this.info = ko.observable("You have not clicked me...");
+  this.info = ko.observable("");
   this.visible = ko.observable(false);
 };
 
@@ -102,44 +98,57 @@ var viewModel =  {
 
               //********** List Click ***********//
 showInfo: function(place){
-  //first clear any open list info
-  viewModel.placeList().forEach(function(p){
-    p.info("You have not clicked me....");
-    p.visible(false);
-  });
 
-  //get foursquare data
-  $.ajax({
-    url: "https://api.foursquare.com/v2/venues/" + place.venue + "?&client_id=2ULM5QFG2MSTWR1I23BKMMRML2KRPE0W251M2IGEQOYD4UG2&client_secret=CX5HD4LD23J5IRWSCQ1NNU10EVVQWAJDCPUUD5LAYCJZEPMF&v=20170602",
-    datatype: "jsonp",
+  //if already selected, close it
+  if(place.visible() == true){
+    place.visible(false);
+    infoWindow.close();
+  }else{
+    //we will open it
+    //first clear any open list info
+    viewModel.placeList().forEach(function(p){
+      p.info("");
+      p.visible(false);
+    });
 
-    success: function(response){
-      var rating = response.response.venue.rating;
-      var size = "300x300";
-      place.photoURL(response.response.venue.photos.groups[0].items[1].prefix + size + response.response.venue.photos.groups[0].items[1].suffix);
-      place.visible(true);
-      place.info("Rating: " + rating.toString() + "/10");
-      console.log(response);
-      clearTimeout(foursquareRequestTimeout);
-    },
-    async: true,
-  });
+    // scrollval = document.getEl
 
-    var foursquareRequestTimeout = setTimeout(function() {
-      alert("Failed to load Foursquare photos");
-    }, 3000);
+    //get foursquare data
+    $.ajax({
+      url: "https://api.foursquare.com/v2/venues/" + place.venue + "?&client_id=2ULM5QFG2MSTWR1I23BKMMRML2KRPE0W251M2IGEQOYD4UG2&client_secret=CX5HD4LD23J5IRWSCQ1NNU10EVVQWAJDCPUUD5LAYCJZEPMF&v=20170602",
+      datatype: "jsonp",
+
+      success: function(response){
+        var rating = response.response.venue.rating;
+        var size = "300x300";
+        place.photoURL(response.response.venue.photos.groups[0].items[1].prefix + size + response.response.venue.photos.groups[0].items[1].suffix);
+        place.visible(true);
+        place.info("Rating: " + rating.toString() + "/10");
+        console.log(response);
+        clearTimeout(foursquareRequestTimeout);
+      },
+      async: true,
+    });
+
+      var foursquareRequestTimeout = setTimeout(function() {
+        place.photoURL("img/photofail.jpg");
+      }, 3000);
 
 
-  //place.info("You Clicked!");
-  //open marker info window for selected place
-  fillWindow(markers[place.id], infoWindow);
-  //bounce it out
-  toggleBounce(markers[place.id]);
-  //show streetview
-  showPano(markers[place.id].position);
+    //open marker info window for selected place
+    fillWindow(markers[place.id], infoWindow);
+    //bounce it out
+    toggleBounce(markers[place.id]);
+    //show streetview
+    showPano(markers[place.id].position);
+  }
 }
 
 };
+
+function navClick(){
+  document.getElementById("options-box").style.width = "250px";
+}
 
 //************************** Initialization Calls *********************************
 

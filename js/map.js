@@ -4,10 +4,15 @@ var infoWindow;
 
 function initMap() {
   // Constructor creates a new map - only center and zoom are required.
-  map = new google.maps.Map(document.getElementById('map'), {
+  map = new google.maps.Map(document.getElementById('map-canvas'), {
     center: {lat: 38.607523, lng: -90.225898},
-    zoom: 16
+    zoom: 16,
+    streetViewControl: false
   });
+}
+
+function mapError(){
+  alert("Google Map Error");
 }
 
 function geocodeAddress(address, i){
@@ -44,6 +49,7 @@ function createMarker(id){
 
   //add an infoWindow to the marker
   infoWindow = new google.maps.InfoWindow();
+
   marker.addListener('click', function(){
     //fill infowindow
     fillWindow(this, infoWindow);
@@ -68,6 +74,7 @@ function fillWindow(marker, window) {
   }
 }
 
+
 function toggleBounce(marker){
   if(marker.getAnimation() !== null){
     marker.setAnimation(null);
@@ -78,8 +85,6 @@ function toggleBounce(marker){
 }
 
 function showPano(position){
-
-  //document.getElementById("test").innerHTML = "test success";
 
   var panorama = new google.maps.StreetViewPanorama(
       document.getElementById('pano'), {
