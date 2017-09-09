@@ -1,5 +1,6 @@
 ## EXPLORING FOX PARK NEIGHBORHOOD APP
 
+***************************************
 RUNNING AND USING THE APPLICATION
 ****************************************
 
@@ -19,6 +20,7 @@ Clicking on a place will show a photo from that place's foursquare photo, as wel
 the place's foursquare ranking. It will also open an info window on the corresponding map
 marker. Clicking again will close the expanded list view and the marker.
 
+**********************************
 KNOCKOUT MV* APPLICATION STRUCTURE
 **********************************
 contained in: js/app.js
@@ -48,6 +50,7 @@ It also contains the functionality for searching the list view.
 It also contains the functionality for what happens when a user clicks on a list
 item in the list view. This includes requests to the foursquare API.
 
+**************************************
 GOOGLE MAP
 **************************************
 contained in: js/map.js

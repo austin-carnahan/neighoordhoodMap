@@ -6,7 +6,7 @@
 var place = function(name, address, venueId){
   this.name = name;
   this.address = address;
-  this.latlong = {lat:0.0, lng:0.0};``
+  this.latlong = {lat:0.0, lng:0.0};
   this.id = 0;
   this.venue = venueId;
   this.photoURL = ko.observable("");
@@ -100,7 +100,7 @@ var viewModel =  {
 showInfo: function(place){
 
   //if already selected, close it
-  if(place.visible() == true){
+  if(place.visible() === true){
     place.visible(false);
     infoWindow.close();
   }else{
