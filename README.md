@@ -25,7 +25,7 @@ KNOCKOUT MV* APPLICATION STRUCTURE
 **********************************
 contained in: js/app.js
 
-The application uses seperation of concerns and knockout.js to provide a responsive
+The application uses separation of concerns and knockout.js to provide a responsive
 experience. The MV* framework on the business/logic side of the app is divided into
 three parts:
 

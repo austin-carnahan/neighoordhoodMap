@@ -1,6 +1,7 @@
 var map;
 var markers = [];
 var infoWindow;
+var currentMark;
 
 function initMap() {
   // Constructor creates a new map - only center and zoom are required.
@@ -50,16 +51,26 @@ function createMarker(id){
   //add an infoWindow to the marker
   infoWindow = new google.maps.InfoWindow();
 
+  //event listener for closing infowindow
+  infoWindow.addListener('closeclick', function(){
+    currentMark.infoWindow.close();
+    viewModel.placeList()[currentMark.id].visible(false);
+  });
+
+  //event listener for marker click
   marker.addListener('click', function(){
+    currentMark = this;
+    //pan to marker
+    map.panTo(currentMark.getPosition());
     //fill infowindow
-    fillWindow(this, infoWindow);
+    fillWindow(currentMark, infoWindow);
     //show panorama
-    showPano(this.position);
+    showPano(currentMark.position);
     //toggle bounce if selected
-    toggleBounce(this);
+    toggleBounce(currentMark);
     //alert list view of selection
-    var selectedPlace = viewModel.placeList()[marker.id];
-    viewModel.showInfo(selectedPlace);
+    // var selectedPlace = viewModel.placeList()[currentMark.id];
+    // viewModel.showInfo(selectedPlace);
   });
 
 }
@@ -76,12 +87,9 @@ function fillWindow(marker, window) {
 
 
 function toggleBounce(marker){
-  if(marker.getAnimation() !== null){
-    marker.setAnimation(null);
-  }else{
-    marker.setAnimation(google.maps.Animation.BOUNCE);
-    setTimeout(function(){ marker.setAnimation(null); }, 750);
-  }
+  marker.setAnimation(google.maps.Animation.BOUNCE);
+  setTimeout(function(){ marker.setAnimation(null); }, 750);
+
 }
 
 function showPano(position){

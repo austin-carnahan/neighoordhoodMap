@@ -52,25 +52,17 @@
     <!-- close wrapper -->
     </body>
 
-    <!--toggle menu script -->
-    <script>
-    document.getElementById("menu").onclick = function(e) {
-        e.preventDefault();
-        document.getElementById("wrapper").classList.toggle("toggled");
-    };
-    </script>
-
-
     <script src= "js/knockout-3.4.2.js"></script>
-    <script src= "js/map.js"></script>
-    <script src= "https://maps.googleapis.com/maps/api/js?key=AIzaSyCp8ZikW_ra9tlHIM92cOJEb0xWjHUs4Fk&v=3&callback=initMap" onerror="mapError()">
-    </script>
-    <script src= "js/app.js" async></script>
     <script
     src= "https://code.jquery.com/jquery-3.2.1.min.js"
     integrity= "sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-    crossorigin= "anonymous" async>
+    crossorigin= "anonymous">
     </script>
+    <script src= "js/map.js"></script>
+    <script src= "js/app.js"></script>
+    <script src= "https://maps.googleapis.com/maps/api/js?key=AIzaSyCp8ZikW_ra9tlHIM92cOJEb0xWjHUs4Fk&v=3&callback=viewModel.initApp" onerror="mapError()" async>
+    </script>
+
 
 
 
