@@ -13,7 +13,7 @@ function initMap() {
 }
 
 function mapError(){
-  alert("Google Map Error");
+  alert("Google Map Error. Failed to Load");
 }
 
 function geocodeAddress(address, i){
