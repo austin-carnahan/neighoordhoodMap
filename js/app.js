@@ -7,6 +7,7 @@ var Place = function(name, address, venueId) {
         lng: 0.0
     };
     this.id = 0;
+    this.mark = null;
     this.venue = venueId;
     this.photoURL = ko.observable("");
     this.info = ko.observable("");
@@ -85,9 +86,6 @@ var viewModel = {
             marker.setVisible(false);
         });
 
-        //stores place id for identifying marker
-        var id;
-
         //add places back to the list if queries match
         places.forEach(function(place) {
 
@@ -96,9 +94,11 @@ var viewModel = {
                 //addd place to viewModel
                 viewModel.placeList.push(place);
 
-                //grab place id and use it to display marker
-                id = place.id;
-                markers[id].setVisible(true);
+                markers.forEach(function(marker){
+                  if(marker.id === place.id){
+                    marker.setVisible(true);
+                  }
+                });
             }
         });
     }, //end viewModel.filter
@@ -136,14 +136,20 @@ var viewModel = {
                 place.visible(true);
             });
 
-            //pan to marker
-            map.panTo(markers[place.id].getPosition());
-            //open marker info window for selected place
-            fillWindow(markers[place.id], infoWindow);
-            //bounce it out
-            toggleBounce(markers[place.id]);
-            //show streetview
-            showPano(markers[place.id].position);
+            markers.forEach(function(marker){
+              if(marker.id === place.id){
+                //set current marker
+                currentMark = marker;
+                //pan to marker
+                map.panTo(marker.getPosition());
+                //open info window
+                fillWindow(marker, infoWindow);
+                //bounce marker
+                toggleBounce(marker);
+                //show streetview
+                showPano(marker.position);
+              }
+            });
         }
     }
 

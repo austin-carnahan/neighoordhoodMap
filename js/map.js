@@ -53,26 +53,23 @@ function createMarker(id){
 
   //event listener for closing infowindow
   infoWindow.addListener('closeclick', function(){
-    currentMark.infoWindow.close();
-    viewModel.placeList()[currentMark.id].visible(false);
+    viewModel.placeList().forEach(function(place){
+      if(currentMark.id === place.id){
+         place.visible(false);
+      }
+    });
   });
 
   //event listener for marker click
   marker.addListener('click', function(){
     currentMark = this;
-    //pan to marker
-    map.panTo(currentMark.getPosition());
-    //fill infowindow
-    fillWindow(currentMark, infoWindow);
-    //show panorama
-    showPano(currentMark.position);
-    //toggle bounce if selected
-    toggleBounce(currentMark);
-    //alert list view of selection
-    // var selectedPlace = viewModel.placeList()[currentMark.id];
-    // viewModel.showInfo(selectedPlace);
-  });
 
+    viewModel.placeList().forEach(function(place){
+      if(currentMark.id === place.id){
+        viewModel.showInfo(place);
+      }
+    });
+  });
 }
 
 
