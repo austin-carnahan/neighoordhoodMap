@@ -2,25 +2,26 @@
 <html>
   <head>
   <meta name="viewport" content="width=device-width, height=device-height" />
+  <title>Udacity Neighborhood Map</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link href= "css/styles.css" rel= "stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
   </head>
   <body>
-    <div id = "wrapper">
+    <div id="wrapper">
 
       <!--sidebar -->
-      <div id = "sidebar-wrapper">
-        <div class= "options-box">
-          <input type= "text" id= "searchbox" placeholder= "What are you looking for?"
-            data-bind= "value: filterText, valueUpdate: 'keyup'">
+      <div id="sidebar-wrapper">
+        <div class="options-box">
+          <input type="text" id="searchbox" placeholder="What are you looking for?"
+            data-bind="value: filterText, valueUpdate: 'keyup'">
           <hr>
-          <ul id= "places" data-bind = "foreach: placeList">
-            <li data-bind= "click: $parent.showInfo" class = "place">
+          <ul id="places" data-bind="foreach: placeList">
+            <li data-bind="click: $parent.showInfo" class="place">
               <div>
-                <span data-bind= "text: name" class= "listname"></span><br>
-                <span data-bind= "text: address" class= "listaddr"></span><br>
-                <span data-bind= "text: info, visible: visible"></span>
-                <img class= "place-photo" data-bind= "attr:{src:photoURL}, visible: visible" alt= "place photo"/ /><span class= "source-credit" data-bind= "visible: visible">
+                <span data-bind="text: name" class="listname"></span><br>
+                <span data-bind="text: address" class="listaddr"></span><br>
+                <span data-bind="text: info, visible: visible"></span>
+                <img class="place-photo" data-bind="attr:{src:photoURL}, visible: visible" alt= "place photo"/><span class="source-credit" data-bind="visible: visible">
                   Image and rating provided by foursquare.com
                 </span>
                 <hr>
@@ -34,10 +35,10 @@
       <!--page content -->
       <div id="page-content-wrapper" class="container-fluid">
         <header class="row">
-          <div id= "menu" class= "menu col-xs-2 center-block">
-            <div class= "menuBar"></div>
-            <div class= "menuBar"></div>
-            <div class= "menuBar"></div>
+          <div id="menu" class="menu col-xs-2 center-block">
+            <div class="menuBar"></div>
+            <div class="menuBar"></div>
+            <div class="menuBar"></div>
           </div>
           <h1 class="col-xs-10 text-center">Explore Fox Park Neighboorhood</h1>
         </header>
@@ -52,18 +53,15 @@
     <!-- close wrapper -->
     </body>
 
-    <script src= "js/knockout-3.4.2.js"></script>
-    <script
-    src= "https://code.jquery.com/jquery-3.2.1.min.js"
-    integrity= "sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-    crossorigin= "anonymous">
+    <script src="js/knockout-3.4.2.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous">
     </script>
-    <script src= "js/map.js"></script>
-    <script src= "js/app.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/app.js"></script>
     <script src= "https://maps.googleapis.com/maps/api/js?key=AIzaSyCp8ZikW_ra9tlHIM92cOJEb0xWjHUs4Fk&v=3&callback=viewModel.initApp" onerror="mapError()" async>
     </script>
-
-
 
 
 </html>
