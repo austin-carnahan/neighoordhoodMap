@@ -1,8 +1,6 @@
 
-html, body {
+body {
   font-family: Arial, sans-serif;
-  height: 100%;
-  width: 100%;
   overflow: hidden;
 }
 
@@ -42,6 +40,8 @@ html, body {
   height: 100%;
   width: 100%;
   position:absolute;
+  padding-right: 0px;
+  padding-left: 0px;
 }
 
 #wrapper.toggled #page-content-wrapper {
@@ -58,7 +58,14 @@ html, body {
 header{
   border: 1px solid #999;
   border-radius: 3px;
+  padding-right: 0px;
+  margin-right: 0px;
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 2px 9px 1px rgba(0, 0, 0, 0.12), 0 4px 2px -2px rgba(0, 0, 0, 0.2);
+}
 
+.row{
+  margin-right: 0px;
+  margin-left: 0px;
 }
 
 h1 {
@@ -74,11 +81,18 @@ h1 {
 .container-map {
   height: 100%;
   width: 100%;
+  margin-right: 0px;
 }
 
-/*#wrapper.toggled .container-map{
-  width: 80%;
-}*/
+.markerTitle {
+  text-align: center;
+  font-weight: bold;
+}
+
+#pano {
+height: 200px;
+width: 200px;
+}
 
 .menu{
  margin-top: 10px;
@@ -121,7 +135,7 @@ h1 {
 }
 
 .place:hover {
-  background-color: #e5fff9;
+  color: #0066ff;
 }
 
 .place-photo {

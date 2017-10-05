@@ -77,7 +77,7 @@ function fillWindow(marker, window) {
   if (window.marker != marker) {
     window.marker = marker;
   }
-  window.setContent('<div>' + marker.title + '</div><br><div id="pano" style="height:200px; width:200px;"></div>');
+  window.setContent('<div class="markerTitle">' + marker.title + '</div><br><div id="pano"></div>');
   window.open(map, marker);
 }
 
